@@ -1,6 +1,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include "printops.h"
+#include "interrupt.h"
 
 #ifndef _PROCESSCOMMAND_H_
 #define _PROCESSCOMMAND_H_
@@ -39,7 +40,7 @@ static bool validate_buffer( const char *buff, size_t buff_len ){
         return false;
 }
 static void process_command( const char *buff, size_t buff_len ){
-    size_t i;
+//    size_t i;
     short color;
     short delay;
     short qty;
@@ -81,6 +82,7 @@ static void process_command( const char *buff, size_t buff_len ){
         }
 
         kern_info( 0, "QTY : %d", qty );
+        start_timer_interrupt();
     }
 
 }

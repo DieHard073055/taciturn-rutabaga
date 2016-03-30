@@ -99,6 +99,7 @@ static ssize_t device_write( struct file *ptr_file, const char *buff,
                              size_t buff_len,       loff_t *offset ){
     kern_info( 0, "Recieved %d bytes from user", buff_len );
     process_command( buff, buff_len );
+
     return buff_len;
 }
 

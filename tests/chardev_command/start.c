@@ -13,6 +13,7 @@
 #include <linux/module.h>
 #include <linux/init.h>
 #include "chardev.h"
+#include "interrupt.h"
 
 /**
  * Module definitions
@@ -36,6 +37,8 @@ static int __init cmd_dev_init(void){
         return ret;
     }
 
+    setup_timer_interrupt();
+
     return 0;
 }
 
@@ -45,6 +48,7 @@ static int __init cmd_dev_init(void){
  **/
 static void __exit cmd_dev_exit(void){
     remove_chardev();      
+    remove_timer();
 }
 
 module_init( cmd_dev_init );
