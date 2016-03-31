@@ -1,3 +1,15 @@
+/**
+ * @file    process_command.h
+ * @author  Eshan Shafeeq
+ * @version 0.1
+ * @date    31 March 2016
+ * @brief   This file is to process commands received 
+ *          from the user through character device file
+ *          and assign the appropriate function based on
+ *          the command parameters.
+ **/
+
+
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include "printops.h"
@@ -6,15 +18,22 @@
 #ifndef _PROCESSCOMMAND_H_
 #define _PROCESSCOMMAND_H_
 
-#define RED     3
-#define GREEN   4
-#define BLUE    5
-
-#define SHORT   6
-#define NORMAL  7
-#define LONG    8
-
-static bool validate_buffer( const char *buff, size_t buff_len ){
+/**
+ * Validate buffer
+ *
+ * @brief   This function validates the buffer received
+ *          from the user. Makes sure only white space
+ *          and numeric values are given as command.
+ *
+ * @param   buff        The buffer received from the user
+ * @param   buff_len    The length of the buffer
+ * @param   buff_i      The value of buff[i] converted to
+ *                      ACII value.
+ * @param   space       To keep count of the white space 
+ * @param   num         To keep count of the numeric digits
+ *
+ **/
+static inline bool validate_buffer( const char *buff, size_t buff_len ){
     size_t i;
     int buff_i = 0;
     short space=0;
@@ -39,6 +58,21 @@ static bool validate_buffer( const char *buff, size_t buff_len ){
     else
         return false;
 }
+
+/**
+ * Process Command
+ *
+ * @brief   This function processes the command
+ *          received by the buffer and executes
+ *          the proper action.
+ *
+ * @param   buff        The buffer received from the user
+ * @param   buff_len    The length of the buffer
+ * @param   color       To store the color selected by the user
+ * @param   delay       To store the delay length selected by the user
+ * @param   qty         To store the number of blinks selected
+ *
+ **/
 static void process_command( const char *buff, size_t buff_len ){
 //    size_t i;
     short color;
@@ -82,7 +116,8 @@ static void process_command( const char *buff, size_t buff_len ){
         }
 
         kern_info( 0, "QTY : %d", qty );
-        start_timer_interrupt();
+        start_timer_interrupt(color, delay, qty);
+        
     }
 
 }

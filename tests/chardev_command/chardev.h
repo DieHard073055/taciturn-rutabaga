@@ -1,3 +1,17 @@
+/**
+ * @file    chardev.h
+ * @author  Eshan Shafeeq
+ * @version 0.1
+ * @date    29 March 2016
+ * @brief   This file provides the device driver
+ *          capabilities to the module including
+ *          this file. Fetches a major number.
+ *          Registers a device class and a device.
+ *          Also implements open, release, read and write
+ *          functionality for the file operations structure.
+ *
+ **/
+
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/fs.h>
