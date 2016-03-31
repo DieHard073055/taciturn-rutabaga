@@ -1,6 +1,0 @@
-make clean
-make
-sudo rmmod status_led_driver
-sudo insmod status_led_driver.ko
-sudo chmod 666 /dev/sled
-echo "RED SHORT 10" > /dev/sled
