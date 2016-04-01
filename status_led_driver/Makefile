@@ -1,5 +1,5 @@
-obj-m +=charactercommand.o
-charactercommand-objs := start.o
+obj-m +=sled.o
+sled-objs := start.o
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules

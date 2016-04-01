@@ -1,0 +1,31 @@
+Status led for raspberry pi
+
+U can make the led blink.
+Colors : 
+    RED     3
+    GREEN   4
+    BLUE    5
+
+You can also set the delay for the blink
+Delays :
+    SHORT   6
+    NORMAL  7
+    LONG    8
+
+And then you can set how many times you wanna blink
+the example usage
+
+first load the module
+
+$sudo insmod sled.ko
+
+then set the right permission for the device file
+
+$sudo chmod 666 /dev/sled
+
+then you can send commands
+eg : RED led short blink 6 times
+
+echo "3 6 6" > /dev/sled
+
+the delay amount can only be between 0 - 9

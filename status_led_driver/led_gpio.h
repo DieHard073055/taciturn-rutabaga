@@ -19,9 +19,9 @@
  **/
 
 static struct gpio leds[] = {
-    {   4,  GPIOF_OUT_INIT_LOW, "REDLED"    },
-    {   17, GPIOF_OUT_INIT_LOW, "GREENLED"  },
-    {   27, GPIOF_OUT_INIT_LOW, "BLUELED"   }
+    {   4,  GPIOF_OUT_INIT_HIGH, "REDLED"    },
+    {   17, GPIOF_OUT_INIT_HIGH, "GREENLED"  },
+    {   27, GPIOF_OUT_INIT_HIGH, "BLUELED"   }
 };
 
 /**
@@ -88,9 +88,9 @@ static inline void toggle_led( size_t index, bool value ){
 
     //kern_info( 5, "index %d state %s", index, value?"true":"false" );
     if( value ){
-        gpio_set_value( leds[ index ].gpio, 1 );
-    }else{
         gpio_set_value( leds[ index ].gpio, 0 );
+    }else{
+        gpio_set_value( leds[ index ].gpio, 1 );
     }
 }
 
